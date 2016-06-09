@@ -31,7 +31,7 @@ int main()
 	int i;
 	for(i = 0; true; i++)
 	{
-		if(shm[i%SHM_SIZE] == shm[i%SHM_SIZE])
+		if(shm[i%SHM_SIZE] == shm[i%SHM_SIZE-1])
 			counter++;
 		else
 			counter = 1;
