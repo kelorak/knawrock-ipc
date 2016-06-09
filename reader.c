@@ -8,9 +8,9 @@
 #define SHM_SIZE 100
 int main()
 {
-	char *shm;
+	int *shm;
 	int shmid;
-	int counter;
+
 	key_t key;
 	time_t start;
 	time_t stop;
@@ -29,19 +29,10 @@ int main()
 	}
 	start = time(NULL);
 	int i;
-	for(i = 0; true; i++)
+	for(i = 0; i < SHM_SIZE; i++)
 	{
-		if(shm[i%SHM_SIZE] == shm[i%SHM_SIZE-1])
-			counter++;
-		else
-			counter = 1;
-		if(counter == 5)
-		{
-			stop = time(NULL);
-			runtime = difftime(stop, start);
-			printf("znalezienie 5 takich samych bajtow pod rzad zajelo: %f", runtime);
-			exit(1);
-		}
+		printf("%d\n", shm[i])
 	}
+	exit(1);
 	return 0;
 }

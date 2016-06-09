@@ -9,10 +9,11 @@
 int main()
 {
 	srand (time(NULL));
+	a = 1;
+	q = 2;
 	int shmid;
 	key_t key;
-	char sign;
-	char *shm;
+	int *shm;
 	key = 6666;
 	shmid = shmget(key, SHSIZE, IPC_CREAT | 0666);
 	if(shmid == -1)
@@ -26,12 +27,11 @@ int main()
 		perror("shmat error\n");
 		exit(1);
 	}
-	int i = 0;
-	do
+	int i;
+	for(i = 1; i < SHM_SIZE; i++)
 	{
-		sign = rand()%58+65;
-		shm[i%SHM_SIZE] = sign;
-		i++;
-	}while(1);
+		a = a*q;
+		shm[i] = a;
+	}
 	return 0;
  } 
